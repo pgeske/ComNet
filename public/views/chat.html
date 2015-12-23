@@ -1,6 +1,13 @@
 
-<div class = "box med" style="height: 500px">
-    <div class="box chat" style="border-width: 5px; border-style: solid"></div>
-    <input class="form-control box input"></input>
+<div class = "box xl" style="height: 500px">
+    <div class="box chat" style="overflow: scroll; padding: 10px; border-width: 1px; border-style: solid">
+        <div ng-repeat="msg in history">
+            {{msg.username}}: {{msg.message}}
+        </div>
+    </div>
+    <form ng-submit="sendMessage()">
+        <input ng-model="message" class="form-control box input"></input>
+        <button class="btn btn-success" type="submit" style="margin-top: 10px">Send</button>
+    </form>
 </div>
 

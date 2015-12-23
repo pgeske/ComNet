@@ -5,6 +5,7 @@
         "express": "*",
         "mongoose": "*",
         "method-override": "*",
-        "body-parser": "*"
+        "body-parser": "*",
+        "socket.io" : "*"
     }
 }

@@ -11,7 +11,7 @@ app.controller('LoginController', ['$scope', '$location', 'AuthenticationService
                 $scope.valid = AuthenticationService.isLoggedIn;
                 console.log(AuthenticationService.isLoggedIn); 
                 if ($scope.valid) {
-                    $location.path('/chat');
+                    $location.path('/');
                 }
                 //$scope.valid = data.valid;
             });

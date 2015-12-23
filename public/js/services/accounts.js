@@ -1,6 +1,9 @@
 app.factory('AuthenticationService', ['$http', function($http) {
     var AuthenticationService = {};
     AuthenticationService.isLoggedIn = false;
+    AuthenticationService.userInfo = {
+        username: null
+    }
     // authenticate
     AuthenticationService.authenticate = function(username, password) {
         params = {
@@ -11,6 +14,7 @@ app.factory('AuthenticationService', ['$http', function($http) {
             success(function(data) {
                 if (data.valid) {
                     AuthenticationService.isLoggedIn = true;
+                    AuthenticationService.userInfo.username = username;
                 }
             })
     }
