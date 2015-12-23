@@ -1,0 +1,19 @@
+.box {
+    display: inline-block;
+}
+
+.box.med {
+    width:40%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.box.chat {
+    width: 100%;
+    height: 90%;
+}
+
+.box.input {
+    width: 100%;
+    height: 10%;
+}

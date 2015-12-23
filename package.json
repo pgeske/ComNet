@@ -1,0 +1,10 @@
+{
+    "name": "com-net",
+    "main": "server.js",
+    "dependencies": {
+        "express": "*",
+        "mongoose": "*",
+        "method-override": "*",
+        "body-parser": "*"
+    }
+}

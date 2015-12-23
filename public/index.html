@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <title>ComNet</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/comnet.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
+</head>
+<body ng-app="ComNet">
+    <h1 style="text-align: center">Welcome to ComNet</h1>
+    <!--AngularJS dynamic content-->
+    <div ng-view></div>
+
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+
+    <!--App-->
+    <script src="js/app.js"></script>
+    <!--Controllers-->
+    <script src="js/controllers/loginCtrl.js"></script>
+    <script src="js/controllers/chatCtrl.js"></script>
+    <!--Services-->
+    <script src="js/services/accounts.js"></script>
+    <!--Routes-->
+    <script src="js/routes.js"></script>
+
+
+</body>
+</html>
