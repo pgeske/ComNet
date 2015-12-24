@@ -77,4 +77,10 @@ app.controller('ChatController', ['$scope', 'ChatService', 'AuthenticationServic
         //Notify server of join to chat
         ChatService.send('join', {username: AuthenticationService.userInfo.username});
     });
+    //============
+    // Calculation
+    //============
+    $scope.getColor = function(strng) {
+        return "#" + intToRGB(hashCode(strng));
+    }
 }]);

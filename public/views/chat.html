@@ -6,7 +6,7 @@
             <div class="panel-body chat-box">
                 <div ng-repeat="msg in history">
                     <div ng-if="msg.type == 'message'">
-                        {{msg.username}}: {{msg.message}}
+                        <span ng-style="{color: getColor(msg.username)}" >{{msg.username}}</span>: {{msg.message}}
                     </div>
                     <div ng-if="msg.type == 'join'">
                         {{msg.username}} has joined the chat.

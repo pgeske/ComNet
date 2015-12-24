@@ -24,7 +24,7 @@
 }
 
 .chat-box {
-    height: 400px;
+    height: 450px;
     overflow: scroll;
 }
 
@@ -47,6 +47,6 @@
 }
 
 .user-box {
-    height: 460px;
+    height: 510px;
     overflow: scroll;
 }
