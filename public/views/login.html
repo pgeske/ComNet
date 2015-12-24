@@ -10,6 +10,7 @@
     </div>
     <button class="btn btn-success" type="submit" ng-click="login()" >Login</button>
     <button class="btn btn-default" type="button" ng-click="register()" >Register</button>
+    <i ng-show="loading" class="fa fa-spinner fa-spin fa-lg" style="margin-left: 10px"></i>
 </form>
 
 <div class = "alert alert-danger" ng-show="valid == false">

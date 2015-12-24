@@ -1,8 +1,8 @@
-app.factory('AuthenticationService', ['$http', function($http) {
+app.factory('AuthenticationService', ['$http', '$sessionStorage', function($http, $sessionStorage) {
     var AuthenticationService = {};
-    AuthenticationService.isLoggedIn = false;
+    AuthenticationService.isLoggedIn = $sessionStorage.isLoggedIn;
     AuthenticationService.userInfo = {
-        username: null
+        username: $sessionStorage.username
     }
     // authenticate
     AuthenticationService.authenticate = function(username, password) {
@@ -15,6 +15,9 @@ app.factory('AuthenticationService', ['$http', function($http) {
                 if (data.valid) {
                     AuthenticationService.isLoggedIn = true;
                     AuthenticationService.userInfo.username = username;
+                    //update session storage info
+                    $sessionStorage.username = username;
+                    $sessionStorage.isLoggedIn = true;
                 }
             })
     }

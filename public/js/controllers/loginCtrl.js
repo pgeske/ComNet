@@ -4,16 +4,17 @@ app.controller('LoginController', ['$scope', '$location', 'AuthenticationService
     $scope.password = '';
     $scope.valid = null;
     $scope.registered = null;
+    $scope.loading = false;
     // login
     $scope.login = function() {
+        $scope.loading = true;
         AuthenticationService.authenticate($scope.username, $scope.password).
             success(function(data) {
                 $scope.valid = AuthenticationService.isLoggedIn;
-                console.log(AuthenticationService.isLoggedIn); 
                 if ($scope.valid) {
                     $location.path('/');
                 }
-                //$scope.valid = data.valid;
+                $scope.loading = false;
             });
     }
     //register

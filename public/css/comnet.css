@@ -1,3 +1,5 @@
+.page-container {
+}
 .box {
     display: inline-block;
 }
@@ -14,12 +16,37 @@
     margin-right: 10%;
 }
 
-.box.chat {
-    width: 100%;
-    height: 90%;
+/* Chat CSS */
+.chat-container {
+    display: inline-block;
+    width: 80%;
+    vertical-align: top;
 }
 
-.box.input {
-    width: 100%;
-    height: 10%;
+.chat-box {
+    height: 400px;
+    overflow: scroll;
+}
+
+.chat-input {
+    display: inline-block;
+    height: 40px;
+    width: 90%;
+    margin: 0;
+}
+
+.chat-send {
+    display: inline-block;
+    width: 9%;
+}
+
+.user-container {
+    display: inline-block;
+    width: 19%;
+    vertical-align: top;
+}
+
+.user-box {
+    height: 460px;
+    overflow: scroll;
 }
