@@ -41,7 +41,7 @@ server.listen(port);
 //=======
 var sockets = [];
 var socketMap = {};
-var chatUsers = [];
+var chatUsers = {};
 io.on('connection', function(socket) {
     //add entry to socketMap
     socketMap[socket.id] = {username: null};
@@ -49,11 +49,23 @@ io.on('connection', function(socket) {
     if (sockets.indexOf(socket) == -1) {
         sockets.push(socket);
     }
+    //broadcast user update
+    socket.on('userUpdate', function(data) {
+        //Update chatUsers entry for username
+        chatUsers[data.username] = data.info;
+        //Broadcast chatUsers
+        sockets.forEach(function(sock) {
+            sock.emit('userUpdate', data);
+        });
+
+    });
     //broadcast join to all sockets
     socket.on('join', function(data) {
         socketMap[socket.id].username = data.username;
-        //Add join data to server side chatUsers storage
-        chatUsers.push(data.username);
+        //Add an entry for the user in the server's storage
+        chatUsers[data.username] = {
+            typing: false
+        }
         //Add chatUsers field to data
         data.onlineUsers = chatUsers;
         //Broadcast to all sockets
@@ -64,7 +76,7 @@ io.on('connection', function(socket) {
     //broadcast leave to all sockets
     socket.on('disconnect', function() {
         //Remove username from chatUsers
-        chatUsers = chatUsers.filter(function(d) {return d != socketMap[socket.id].username});
+        delete chatUsers[socketMap[socket.id].username];
         //Create data field
         data = {
             username: socketMap[socket.id].username,

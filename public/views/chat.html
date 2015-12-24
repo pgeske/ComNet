@@ -19,7 +19,7 @@
             <div class="panel-footer">
                 <form ng-submit="sendMessage()">
                     <div>
-                    <input ng-model="message" placeholder="Enter a message" class="form-control chat-input"></input>
+                    <input ng-keyup="updateInfo('typing', false)" ng-keydown="updateInfo('typing', true)" ng-model="message" placeholder="Enter a message" class="form-control chat-input"></input>
                     <button class="btn btn-success chat-send" type="submit">Send <i ng-show="loading" class="fa fa-spinner fa-spin fa-lg" ></i></button>
                     
                     </div>
@@ -32,8 +32,8 @@
         <div class="panel panel-info">
             <div class="panel-heading">Online Users</div>
             <div class="panel-boxy user-box">
-                <div ng-repeat="usr in onlineUsers">
-                    {{usr}}
+                <div ng-repeat="(usr,info) in onlineUsers">
+                    {{usr}} <i ng-show="info.typing" class="fa fa-keyboard-o"></i>
                 </div>
             </div>
         </div>

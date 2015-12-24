@@ -1,11 +1,29 @@
 app.controller('ChatController', ['$scope', 'ChatService', 'AuthenticationService', function($scope, ChatService, AuthenticationService) {
-    // dual binding variables
+    //=======================
+    // Dual Binding Variables
+    //=======================
     $scope.message = '';
     $scope.history = [];
-    $scope.onlineUsers = [];
+    $scope.onlineUsers = {};
     $scope.loading = false;
+    //===================
+    // Scope Modification
+    //===================
+    $scope.updateInfo = function(field, value) {
+        //update entry
+        var entry = $scope.onlineUsers[AuthenticationService.userInfo.username]
+        entry[field] = value;
+        //broadcast update
+        $scope.sendInfo();
+    }
+    //=====================
+    // Sending/Broadcasting
+    //=====================
     //Send a message
     $scope.sendMessage = function() {
+        if ($scope.message == '') {
+            return;
+        }
         $scope.loading = true;
         var data = {
             message: $scope.message,
@@ -14,6 +32,18 @@ app.controller('ChatController', ['$scope', 'ChatService', 'AuthenticationServic
         ChatService.send('message', data);
         $scope.message = '';
     }
+    //Send info
+    $scope.sendInfo = function() {
+        var entry = $scope.onlineUsers[AuthenticationService.userInfo.username];
+        var data = {
+            username: AuthenticationService.userInfo.username,
+            info: entry
+        }
+        ChatService.send('userUpdate', data);
+    }
+    //==========
+    // Listening
+    //==========
     //Listen for messages
     ChatService.receive('message', function(data) {
         if (data.username == AuthenticationService.userInfo.username) {
@@ -35,6 +65,11 @@ app.controller('ChatController', ['$scope', 'ChatService', 'AuthenticationServic
         data.type = 'leave';
         $scope.history.push(data);
         $scope.onlineUsers = data.onlineUsers;
+        $scope.$apply();
+    })
+    //Listen for user data change
+    ChatService.receive('userUpdate', function(data) {
+        $scope.onlineUsers[data.username] = data.info;
         $scope.$apply();
     })
     //Tasks to execute upon view load
