@@ -7,6 +7,6 @@
         "angular": "latest",
         "angular-route": "latest",
         "socket.io-client": "latest",
-        "ngstorage": "latest"
+        "ngstorage": "latest",
     }
 }

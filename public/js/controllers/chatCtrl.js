@@ -52,6 +52,8 @@ app.controller('ChatController', ['$scope', 'ChatService', 'AuthenticationServic
         data.type = 'message';
         $scope.history.push(data);
         $scope.$apply();
+        //scroll to bottom of chat box
+        $('.chat-box').scrollTop($('.chat-box')[0].scrollHeight);
     });
     //Listen for joins
     ChatService.receive('join', function(data) {
@@ -77,9 +79,9 @@ app.controller('ChatController', ['$scope', 'ChatService', 'AuthenticationServic
         //Notify server of join to chat
         ChatService.send('join', {username: AuthenticationService.userInfo.username});
     });
-    //============
-    // Calculation
-    //============
+    //==============
+    // Miscellaneous
+    //==============
     $scope.getColor = function(strng) {
         return "#" + intToRGB(hashCode(strng));
     }
