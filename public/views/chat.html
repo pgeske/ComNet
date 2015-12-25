@@ -18,7 +18,7 @@
         <div class="panel-footer">
             <form ng-submit="sendMessage()">
                 <div>
-                    <input ng-keyup="updateInfo('typing', false)" ng-keydown="updateInfo('typing', true)" ng-model="message" placeholder="Enter a message" class="form-control chat-input"></input>
+                    <input ng-keyup="typingTimer.start()" ng-keydown="updateInfo('typing', true)" ng-model="message" placeholder="Enter a message" class="form-control chat-input"></input>
                     <button class="btn btn-success chat-send" type="submit">Send <i ng-show="loading" class="fa fa-spinner fa-spin fa-lg" ></i></button>
 
                 </div>

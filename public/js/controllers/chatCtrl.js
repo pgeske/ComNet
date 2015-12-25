@@ -1,4 +1,4 @@
-app.controller('ChatController', ['$scope', 'ChatService', 'AuthenticationService', function($scope, ChatService, AuthenticationService) {
+app.controller('ChatController', ['$scope', '$timeout', 'ChatService', 'AuthenticationService', function($scope, $timeout, ChatService, AuthenticationService) {
     //=======================
     // Dual Binding Variables
     //=======================
@@ -12,9 +12,23 @@ app.controller('ChatController', ['$scope', 'ChatService', 'AuthenticationServic
     $scope.updateInfo = function(field, value) {
         //update entry
         var entry = $scope.onlineUsers[AuthenticationService.userInfo.username]
+        var oldValue = entry[field];
         entry[field] = value;
-        //broadcast update
-        $scope.sendInfo();
+        //broadcast update if there was actually a change
+        if (oldValue != value) {
+            $scope.sendInfo();
+        }
+    }
+    $scope.typingTimer = {
+        timer: null,
+        start: function() {
+            console.log("Here"); 
+            if (this.timer) $timeout.cancel(this.timer);
+            $scope.updateInfo('typing', true);
+            this.timer = $timeout(function(){
+                $scope.updateInfo('typing', false);
+            }, 500);
+        }
     }
     //=====================
     // Sending/Broadcasting
