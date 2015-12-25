@@ -14,12 +14,17 @@
     </style>
 </head>
 <body ng-app="ComNet">
-    <div class="page-header" style="margin-top: 10px">
-        <h3 >ComNet</h3>
-    </div>
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/#/">ComNet</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li ng-class="pageStatus['views/chat.html'].class"><a href="/#/">Chat</a></li>
+        </ul>
+    </nav>
 
     <!--AngularJS dynamic content-->
-    <div ng-view style="padding: 0"></div>
+    <div ng-view></div>
     <!--Libraries-->
     <script src="libs/angular/angular.min.js"></script>
     <script src="libs/angular-route/angular-route.min.js"></script>
