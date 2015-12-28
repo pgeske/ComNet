@@ -7,6 +7,7 @@ app.run(function ($rootScope, $location, $route, AuthenticationService) {
     $rootScope.pageStatus = {
         'views/chat.html': {class: ''}
     };
+    $rootScope.notification = "";
     //==========================
     // Root Scope Event Handling
     //==========================

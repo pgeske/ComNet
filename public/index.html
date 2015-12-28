@@ -1,7 +1,7 @@
 <!doctype html>
-<html>
+<html ng-app="ComNet">
 <head>
-    <title>ComNet</title>
+    <title>ComNet {{notification}}</title>
     <!--CSS-->
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
@@ -13,13 +13,14 @@
         }
     </style>
 </head>
-<body ng-app="ComNet">
+<body>
     <nav class="navbar navbar-default">
         <div class="navbar-header">
             <a class="navbar-brand" href="/#/">ComNet</a>
         </div>
         <ul class="nav navbar-nav">
             <li ng-class="pageStatus['views/chat.html'].class"><a href="/#/">Chat</a></li>
+            <li><a href="/#/">Profile</a></li>
         </ul>
     </nav>
 

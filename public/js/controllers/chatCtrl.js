@@ -1,4 +1,4 @@
-app.controller('ChatController', ['$scope', '$timeout', 'ChatService', 'AuthenticationService', function($scope, $timeout, ChatService, AuthenticationService) {
+app.controller('ChatController', ['$scope', '$rootScope','$timeout', '$window','ChatService', 'AuthenticationService', function($scope, $rootScope, $timeout, $window, ChatService, AuthenticationService) {
     //=======================
     // Dual Binding Variables
     //=======================
@@ -6,6 +6,7 @@ app.controller('ChatController', ['$scope', '$timeout', 'ChatService', 'Authenti
     $scope.history = [];
     $scope.onlineUsers = {};
     $scope.loading = false;
+    $scope.windowActive = true;
     //===================
     // Scope Modification
     //===================
@@ -27,7 +28,7 @@ app.controller('ChatController', ['$scope', '$timeout', 'ChatService', 'Authenti
             $scope.updateInfo('typing', true);
             this.timer = $timeout(function(){
                 $scope.updateInfo('typing', false);
-            }, 500);
+            }, 1000);
         }
     }
     //=====================
@@ -63,6 +64,7 @@ app.controller('ChatController', ['$scope', '$timeout', 'ChatService', 'Authenti
         if (data.username == AuthenticationService.userInfo.username) {
             $scope.loading = false;
         }
+        if (!$scope.windowActive) $rootScope.notification = "(1)";
         data.type = 'message';
         $scope.history.push(data);
         $scope.$apply();
@@ -96,7 +98,16 @@ app.controller('ChatController', ['$scope', '$timeout', 'ChatService', 'Authenti
     //==============
     // Miscellaneous
     //==============
+    //Map username to a color
     $scope.getColor = function(strng) {
         return "#" + intToRGB(hashCode(strng));
+    }
+    $window.onfocus = function() {
+        $rootScope.notification = "";
+        $rootScope.$apply();
+        $scope.windowActive = true;
+    }
+    $window.onblur = function() {
+        $scope.windowActive = false;
     }
 }]);

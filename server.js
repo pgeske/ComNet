@@ -88,6 +88,11 @@ io.on('connection', function(socket) {
     });
     //broadcast message to all sockets
     socket.on('message', function(data) {
+        //Add timestamp to data packet
+        var date = new Date();
+        var hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+        var minute = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+        data.timestamp = hour + ":" + minute;
         sockets.forEach(function(sock) {
             sock.emit('message', data);
         });
