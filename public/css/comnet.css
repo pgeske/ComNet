@@ -1,5 +1,7 @@
+/* Universal CSS */
 .box {
     display: inline-block;
+    vertical-align: top;
 }
 
 .box.med {
@@ -8,45 +10,62 @@
     margin-right: 30%;
 }
 
-.box.xl {
-    width:80%;
-    margin-left: 10%;
-    margin-right: 10%;
+.room {
+    padding: 10px;
 }
 
-/* Chat CSS */
-.chat-container {
-    display: inline-block;
+.fill {
+    height: 100%;
+}
+
+/* 
+chat.html CSS 
+ */
+
+/* boxes */
+.box.chat{
     width: 80%;
-    vertical-align: top;
-    padding: 10px;
 }
 
-.chat-box {
-    height: 420px;
-    overflow: scroll;
+.box.user{
+    width:20%;
 }
 
-.chat-input {
-    display: inline-block;
-    height: 40px;
+.box.msg-input{
+    position: relative;
+    top: 7px;
+    height: 36px;
     width: 90%;
-    margin: 0;
 }
 
-.chat-send {
-    display: inline-block;
-    width: 9%;
+.box.send{
+    width:10%;
+    height: 36px;
+    position: relative;
+    top: 7px;
 }
 
-.user-container {
-    display: inline-block;
-    width: 20%;
-    vertical-align: top;
-    padding: 10px;
+/* rows */
+.header-row{
+    height:40px;
 }
 
-.user-box {
-    height: 480px;
-    overflow: scroll;
+.receive-row{
+    height: 82%;
+    padding: 5px;
 }
+
+.send-row{
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    height:50px;
+}
+
+.user-row{
+    height: 90%;
+    padding: 5px;
+}
+
+
