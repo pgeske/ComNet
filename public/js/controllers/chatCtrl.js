@@ -11,6 +11,13 @@ app.controller('ChatController', ['$scope', '$rootScope','$timeout', '$window','
     //===================
     // Scope Modification
     //===================
+    //Locally flush user info. Useful for when user joins chat
+    $scope.flushInfo = function() {
+        $.each($scope.onlineUsers, function(usr, info) {
+            info.typing = false;
+            info.seen = false;
+        })
+    }
     $scope.updateInfo = function(field, value) {
         //update entry
         var entry = $scope.onlineUsers[AuthenticationService.userInfo.username]
@@ -86,6 +93,10 @@ app.controller('ChatController', ['$scope', '$rootScope','$timeout', '$window','
         data.type = 'join';
         $scope.history.push(data);
         $scope.onlineUsers = data.onlineUsers;
+        //Flush if it was you who joined
+        if (data.username == AuthenticationService.userInfo.username) {
+            $scope.flushInfo();
+        }
         $scope.$apply();
     })
     //Listen for leaves
