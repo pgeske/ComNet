@@ -86,7 +86,7 @@ app.controller('ChatController', ['$scope', '$rootScope','$timeout', '$window','
         $scope.history.push(data);
         $scope.$apply();
         //scroll to bottom of chat box
-        $('.chat-box').scrollTop($('.chat-box')[0].scrollHeight);
+        $('.receive-row').scrollTop($('.receive-row')[0].scrollHeight);
     });
     //Listen for joins
     ChatService.receive('join', function(data) {

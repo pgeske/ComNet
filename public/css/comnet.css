@@ -53,6 +53,7 @@ chat.html CSS
 .receive-row{
     height: 82%;
     padding: 5px;
+    overflow: scroll;
 }
 
 .send-row{
