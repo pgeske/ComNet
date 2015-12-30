@@ -7,6 +7,7 @@ app.controller('ChatController', ['$scope', '$rootScope','$timeout', '$window','
     $scope.onlineUsers = {};
     $scope.loading = false;
     $scope.windowActive = true;
+    $scope.username = AuthenticationService.userInfo.username;
     //===================
     // Scope Modification
     //===================
@@ -61,10 +62,19 @@ app.controller('ChatController', ['$scope', '$rootScope','$timeout', '$window','
     //==========
     //Listen for messages
     ChatService.receive('message', function(data) {
+        //Reset seen upon new message
+        $scope.updateInfo('seen', false);
         if (data.username == AuthenticationService.userInfo.username) {
             $scope.loading = false;
         }
-        if (!$scope.windowActive) $rootScope.notification = "(1)";
+        if (!$scope.windowActive) {
+            $rootScope.notification = "(1)";
+        } else {
+            //Update seen status
+            if (data.username != AuthenticationService.userInfo.username) {
+                $scope.updateInfo('seen', true);
+            }
+        }
         data.type = 'message';
         $scope.history.push(data);
         $scope.$apply();
@@ -103,6 +113,10 @@ app.controller('ChatController', ['$scope', '$rootScope','$timeout', '$window','
         return "#" + intToRGB(hashCode(strng));
     }
     $window.onfocus = function() {
+        //Update seen, if pending notification
+        if ($rootScope.notification == '(1)') {
+            $scope.updateInfo('seen', true);
+        }
         $rootScope.notification = "";
         $rootScope.$apply();
         $scope.windowActive = true;

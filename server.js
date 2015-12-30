@@ -64,7 +64,8 @@ io.on('connection', function(socket) {
         socketMap[socket.id].username = data.username;
         //Add an entry for the user in the server's storage
         chatUsers[data.username] = {
-            typing: false
+            typing: false,
+            seen: false
         }
         //Add chatUsers field to data
         data.onlineUsers = chatUsers;

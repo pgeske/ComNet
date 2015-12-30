@@ -30,46 +30,9 @@
             <div class="panel-heading header-row">Online Users</div>
             <div class="panel-body user-row">
                 <div ng-repeat="(usr,info) in onlineUsers">
-                    {{usr}} <i ng-show="info.typing" class="fa fa-keyboard-o"></i>
+                    {{usr}} <i ng-show="info.seen && usr != username" class="fa fa-eye"></i> <i ng-show="info.typing" class="fa fa-keyboard-o"></i>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--
-    <div class="chat-container">
-    <div height-box class="panel panel-info">
-    <div class="panel-heading">Chat Box</div>
-    <div class="panel-body chat-box">
-    <div ng-repeat="msg in history">
-    <div ng-if="msg.type == 'message'">
-    ({{msg.timestamp}}) <strong><span ng-style="{color: getColor(msg.username)}" >{{msg.username}}</span></strong>: {{msg.message}}
-    </div>
-    <div ng-if="msg.type == 'join'">
-    {{msg.username}} has joined the chat.
-    </div>
-    <div ng-if="msg.type == 'leave'">
-    {{msg.username}} has left the chat.
-    </div>
-    </div>
-    </div>
-    <div class="panel-footer">
-    <form ng-submit="sendMessage()">
-    <div>
-    <input ng-change="typingTimer.start(); updateInfo('typing', true)" ng-model="message" placeholder="Enter a message" class="form-control chat-input"></input><button class="btn btn-success chat-send" type="submit">Send <i ng-show="loading" class="fa fa-spinner fa-spin fa-lg" ></i></button>
-
-    </div>
-    </form>
-    </div>
-    </div>
-    </div><div class="user-container">
-    <div height-box class="panel panel-info">
-    <div class="panel-heading">Online Users</div>
-    <div class="user-box">
-    <div ng-repeat="(usr,info) in onlineUsers">
-    {{usr}} <i ng-show="info.typing" class="fa fa-keyboard-o"></i>
-    </div>
-    </div>
-    </div>
-    </div>
--->
